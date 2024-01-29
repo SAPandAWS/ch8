@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "2.2",
+  "description": "Check SAP Kernel Release Level",
+  "parameters": {
+    "TargetKernelRelease": {
+      "type": "String",
+      "description": "The target SAP kernel release level to check against"
+    }
+  },
+  "mainSteps": [
+    {
+      "action": "aws:runShellScript",
+      "name": "checkSAPKernelRelease",
+      "inputs": {
+        "runCommand": [
+          "#! /bin/bash",
+          "# Extract the target SAP kernel release level from parameters",
+          "TARGET_KERNEL_RELEASE='{{TargetKernelRelease}}'",
+          "",
+          "# Function to extract the SAP kernel release",
+          "function check_kernel_release() {",
+          "  # This command should be adapted to where your SAP kernel is located",
+          "  disp+work -version | grep 'kernel release' | awk '{print $NF}'",
+          "}",
+          "",
+          "# Store the current kernel release",
+          "CURRENT_KERNEL_RELEASE=$(check_kernel_release)",
+          "",
+          "# Compare current kernel release with the target kernel release",
+          "if [[ \"$CURRENT_KERNEL_RELEASE\" == \"$TARGET_KERNEL_RELEASE\" ]]; then",
+          "  echo \"SAP kernel release is compliant.\"",
+          "  # You can include commands here to handle the compliant case",
+          "else",
+          "  echo \"SAP kernel release is not compliant.\"",
+          "  # You can include commands here to perform remediation steps",
+          "fi"
+        ]
+      }
+    }
+  ]
+}
