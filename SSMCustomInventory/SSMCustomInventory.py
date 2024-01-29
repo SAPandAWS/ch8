@@ -8,11 +8,8 @@ import hdbcli
 # Retrieve system information using subprocess or other methods
 def get_OS_info():
     # Use OS Commands to extract OS level information
-    # Example:  
-    # result = subprocess.run(['hostname'], check=True, stdout=subprocess.PIPE, universal_newlines=True)
-    # hostname = result.stdout.strip()
-    # Add exception handling blocks to each OS call
-	
+    # Example:  Refer to get_hostname.py for sample code; extend it to extract other information shown below
+    	
     hostname = 'hostname'
     os_vendor = 'os_vendor'
     os_level = 'os_level'
@@ -25,6 +22,8 @@ def get_OS_info():
 # Retrieve EC2 instance details from IMDS Service
 def get_EC2_info():
     # Use IMDS to retrieve EC2 metadata information
+    # Example:  Refer to get_imds_ec2type.py for sample code; extend it to extract other information shown below
+	
     ec2_type = 'instance_type'
     instance_id = 'instance_id'
     
@@ -34,6 +33,8 @@ def get_EC2_info():
 # Retrieve SAP Application details
 def get_SAP_info():
     # Execute sapcontrol OS command to get instance type and number
+    # Example:  Refer to get_sap_sid.py for sample code; extend it to extract other information shown below
+	
     sid = 'sid'
     sap_instance_details = 'sap_instance_details'
     sap_kernel = 'sap_kernel'
@@ -46,6 +47,8 @@ def get_SAP_info():
 def get_DB_info():
     # Connect database using respective DB library (ex. hdbcli for SAP HANA)
     # Run database queries to extract DB information
+    # Example:  Refer to get_hanadb_info.py for sample code; extend it to extract other information shown below
+	
     db_type = 'db_type'
     db_level = 'db_level'
     db_size = 'db_size'  
