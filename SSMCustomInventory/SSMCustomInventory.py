@@ -32,8 +32,12 @@ def get_EC2_info():
 
 # Retrieve SAP Application details
 def get_SAP_info():
-    # Execute sapcontrol OS command to get instance type and number
-    # Example:  Refer to get_sap_sid.py for sample code; extend it to extract other information shown below
+    # Leverge pattern "ps -eaf | grep sap" and find SAP SID and SAP Instance numbers from the processes in the pattern of 
+    # sap<SID>_D<instance_number>, where <SID> is the System ID and <instance_number> is the instance number. 
+    # However, exact pattern may differ based on your SAP installation and configuration
+    # Example:  Refer to get_sap_instances.py for sample code; extend it to extract other information shown below
+    # Once the SAP Instance number is known, you can run sapcontrol commands to find SAP Kernel levels (GetVersionInfo) and SAP Componenet details (ABAPGetComponentList)
+    # Example: Refer to get_sap_info.py for sample code; extend it to extract other information shown below
 	
     sid = 'sid'
     sap_instance_details = 'sap_instance_details'
@@ -46,7 +50,7 @@ def get_SAP_info():
 # Retrieve DB Application details
 def get_DB_info():
     # Connect database using respective DB library (ex. hdbcli for SAP HANA)
-    # Run database queries to extract DB information
+    # Run database queries to extract DB information ("select * from m_database")
     # Example:  Refer to get_hanadb_info.py for sample code; extend it to extract other information shown below
 	
     db_type = 'db_type'
