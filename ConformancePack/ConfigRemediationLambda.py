@@ -1,5 +1,6 @@
-
-
+# This code assumes that the Lambda function is triggered by AWS Config and that the event passed to the function contains all necessary information
+# This remediation function assumes that the Lambda has the necessary permissions to stop, modify, and start EC2 instances. 
+# It's also simplified for brevity. Error handling, logging, and dealing with instances that can't be stopped or modified should be implemented for production use
 
 import boto3
 def lambda_handler(event, context):
