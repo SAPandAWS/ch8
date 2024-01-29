@@ -8,6 +8,11 @@ import hdbcli
 # Retrieve system information using subprocess or other methods
 def get_OS_info():
     # Use OS Commands to extract OS level information
+    # Example:  
+    # result = subprocess.run(['hostname'], check=True, stdout=subprocess.PIPE, universal_newlines=True)
+    # hostname = result.stdout.strip()
+    # Add exception handling blocks to each OS call
+	
     hostname = 'hostname'
     os_vendor = 'os_vendor'
     os_level = 'os_level'
