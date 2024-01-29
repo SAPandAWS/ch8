@@ -1,9 +1,8 @@
 import requests
 
 def get_instance_type():
-    """
-    Function to get the EC2 instance type using the EC2 Instance Metadata Service (IMDS).
-    """
+    #Function to get the EC2 instance type using the EC2 Instance Metadata Service (IMDS).
+
     try:
         # Define the URL for the IMDSv2 token
         token_url = "http://169.254.169.254/latest/api/token"
