@@ -1,0 +1,47 @@
+Resources:
+  # Rule to check if EC2 instances are of the required type for SAP workloads
+  SAPInstanceTypeCheck:
+    Type: 'AWS::Config::ConfigRule'
+    Properties:
+      ConfigRuleName: sap-instance-type-check
+      Description: 'Ensure EC2 instances are of the type required for SAP workloads'
+      Scope:
+        ComplianceResourceTypes:
+          - 'AWS::EC2::Instance'
+      Source:
+        Owner: 'AWS'
+        SourceIdentifier: 'EC2_DESIRED_SAPINSTANCE_TYPE'
+      InputParameters:
+        desiredInstanceType: 'm6i.xlarge'
+
+  # Rule to check if EBS volumes have encryption enabled for SAP data security
+  SAPIOPSVolumeEncrypted:
+    Type: 'AWS::Config::ConfigRule'
+    Properties:
+      ConfigRuleName: sap-iops-volume-encrypted
+      Description: 'Ensure that EBS volumes attached to SAP EC2 instances are encrypted'
+      Scope:
+        ComplianceResourceTypes:
+          - 'AWS::EC2::Volume'
+      Source:
+        Owner: 'AWS'
+        SourceIdentifier: 'ENCRYPTED_VOLUMES'
+      InputParameters:
+        volumeType: 'gp3'
+
+  # Rule to check if the security groups for SAP workloads only allow required ports
+  SAPSecurityGroupCheck:
+    Type: 'AWS::Config::ConfigRule'
+    Properties:
+      ConfigRuleName: sap-security-group-check
+      Description: 'Ensure that security groups for SAP workloads only allow required ports'
+      Scope:
+        ComplianceResourceTypes:
+          - 'AWS::EC2::SecurityGroup'
+      Source:
+        Owner: 'CUSTOM_LAMBDA'
+        SourceDetails:
+          - EventSource: aws.config
+            MessageType: ScheduledNotification
+            MaximumExecutionFrequency: TwentyFour_Hours
+        SourceIdentifier: 'arn:aws:lambda:region:account-id:function:function-name'
