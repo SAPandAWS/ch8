@@ -1,3 +1,6 @@
+# This template is a starting point, and the SourceIdentifier values like “EC2_DESIRED_SAPINSTANCE_TYPE” or “ENCRYPTED_VOLUMES” are placeholders that need to be
+# replaced with actual AWS Config managed rule identifiers or custom Lambda function ARNs that implement the check logic
+
 Resources:
   # Rule to check if EC2 instances are of the required type for SAP workloads
   SAPInstanceTypeCheck:
