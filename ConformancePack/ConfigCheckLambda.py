@@ -1,3 +1,5 @@
+# This code assumes that the Lambda function is triggered by AWS Config and that the event passed to the function contains all necessary information
+
 import boto3
 import json
 def lambda_handler(event, context):
