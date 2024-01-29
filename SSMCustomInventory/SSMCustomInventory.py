@@ -50,7 +50,7 @@ def get_SAP_info():
 # Retrieve DB Application details
 def get_DB_info():
     # Connect database using respective DB library (ex. hdbcli for SAP HANA)
-    # Run database queries to extract DB information ("select * from m_database")
+    # Run database queries to extract DB information ("SELECT * FROM M_SYSTEM_OVERVIEW")
     # Example:  Refer to get_hanadb_info.py for sample code; extend it to extract other information shown below
 	
     db_type = 'db_type'
